@@ -49,6 +49,7 @@ typedef struct {
 	int exterr; // exterr of last api call
 	const char *parodus_url;
 	const char *client_url;
+	const char *client_hw_mac;
 	int keep_alive_count;
 	int reconnect_count;
 	libpd_cfg_t cfg;
@@ -414,6 +415,7 @@ static int send_registration_msg (__instance_t *inst)
 	reg_msg.msg_type = WRP_MSG_TYPE__SVC_REGISTRATION;
 	reg_msg.u.reg.service_name = (char *) inst->cfg.service_name;
 	reg_msg.u.reg.url = (char *) inst->client_url;
+    reg_msg.u.reg.hw_mac = (char *) inst->cfg.hw_mac;
 	return wrp_sock_send (inst, &reg_msg);
 }
 
